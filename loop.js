@@ -12,10 +12,10 @@ do {
     console.log(num);
     num++;
 }
-while (num < 55)
+while (num < 55);
 
 for (let i=1; i < 8; i++) {
-    console.log(i)
+    console.log(i);
 }
 
 for (let i=1; i < 10; i++) {

@@ -1,58 +1,58 @@
 "use strict";
 
-// let number = 5;
-// const leftBorderWidth = 1;
-// number = 10;
-// console.log(number)
+/*let number = 5;
+const leftBorderWidth = 1;
+number = 10;
+console.log(number)
 
-// const obj = {
-//     a: 50
-// };
-// obj.a = 10;
-// console.log(obj);
+const obj = {
+    a: 50
+};
+obj.a = 10;
+console.log(obj);
 
-// let number = 4.6;
+let number = 4.6;
 
-// console.log (-4/0); // -infinity
-// console.log ('string' * 9); // NaN
+console.log (-4/0); // -infinity
+console.log ('string' * 9); // NaN
 
-// const person = `5`;
+const person = `5`;
 
-// const obj = {
-//     name: "John",
-//     age: 25,
-//     isMarried: false
-// };
+const obj = {
+    name: "John",
+    age: 25,
+    isMarried: false
+};
 
-// console.log(obj.age);
-// // console.log(obj["name"]); // the same
+console.log(obj.age);
+// console.log(obj["name"]); // the same
 
-// let arr = ['plum.png', 'orange.jpg', 'apple.bmp', {}, []];
-// console.log(arr[1]);
+let arr = ['plum.png', 'orange.jpg', 'apple.bmp', {}, []];
+console.log(arr[1]);
 
-// const result = confirm("Are you here?"); //всплывающее окно
-// console.log(result);
+const result = confirm("Are you here?"); //всплывающее окно
+console.log(result);
 
-// const answer = prompt("Are you 18 years old?", "18"); //всплывающее окно и поле со строкой // +prompt - number
-// console.log(answer + 5);
+const answer = prompt("Are you 18 years old?", "18"); //всплывающее окно и поле со строкой // +prompt - number
+console.log(answer + 5);
 
-// const answer = [];
-// answer[0] = prompt('Как ваше имя?', '');
-// answer[1] = prompt('Как ваша фамилия?', '');
-// answer[2] = prompt('Сколько вам лет?', '');
+const answer = [];
+answer[0] = prompt('Как ваше имя?', '');
+answer[1] = prompt('Как ваша фамилия?', '');
+answer[2] = prompt('Сколько вам лет?', '');
 
-// document.write(answer);
+document.write(answer);
 
-//___8.Интерполяция
+// ___8.Интерполяция
 
-// const category = 'toys';
-// console.log('https://someurl.com/' + category);
-// console.log(`https://someurl.com/${category}/5`);
+const category = 'toys';
+console.log('https://someurl.com/' + category);
+console.log(`https://someurl.com/${category}/5`);
 
-// const user = "Ivan";
-// alert(`Hello, ${user}`);
+const user = "Ivan";
+alert(`Hello, ${user}`);
 
-//___9.Операторы JS
+// ___9.Операторы JS
 
 console.log('arr' + "object");
 console.log(4 + "object");
@@ -77,7 +77,7 @@ console.log(2 * 4 !== "8");
 const isChecked = true,
     isClose = true;
 
-    console.log(isChecked && !isClose);
+    console.log(isChecked && !isClose);*/
 
 
 
