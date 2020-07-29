@@ -67,37 +67,35 @@ for (let i=0; i<1; i++) {
         i--; // возвращает пользователя к начальным вопросам если он нажал 'отмена'
     }
 //3
-    switch(personalMovieDB.count) {
-        case personalMovieDB.count < 10:
-            console.log("Просмотрено мало фильмов");
-            break;
-        case 10>= personalMovieDB.count >= 30:
-            console.log("Вы классический зритель");
-            break;
-        case personalMovieDB.count > 30:
-            console.log("Вы киноман");
-            break;
-        default:
-           console.log("Произошла ошибка");
-           break;
-            
-
-    }     
+    // switch(personalMovieDB.count) {
+    //     case personalMovieDB.count < 10:
+    //         console.log("Просмотрено мало фильмов");
+    //         break;
+    //     case 10>= personalMovieDB.count >= 30:
+    //         console.log("Вы классический зритель");
+    //         break;
+    //     case personalMovieDB.count > 30:
+    //         console.log("Вы киноман");
+    //         break;
+    //     default:
+    //        console.log("Произошла ошибка");
+    //        break;
+    //   }    //switch используется только для прямого сравнения,  
+    // а так как у нас промежутки мы не можем его применять!! 
     
 
 
     
-        // if(personalMovieDB.count < 10) {
-        //     console.log ("Просмтрено мало фильмов");
-        // } else if (10 >= personalMovieDB.count >= 30) { //что-то не правильно
-        //     console.log ("Вы классический зритель");
-        // } else if (personalMovieDB.count > 30) {
-        //     console.log ("Вы киноман");
-        // } else {
-        //     console.log ("Произошла ошибка");
-        // }
+        if(personalMovieDB.count < 10) {
+            console.log ("Просмтрено мало фильмов");
+        } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) { 
+            console.log ("Вы классический зритель");
+        } else if (personalMovieDB.count > 30) {
+            console.log ("Вы киноман");
+        } else {
+            console.log ("Произошла ошибка");
+        }
     }       
-
 console.log(personalMovieDB);
 
 
