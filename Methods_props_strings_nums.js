@@ -18,7 +18,7 @@ const num = 12.2;
 console.log(Math.round(num));//округление числа
 
 const test = "12.2px";
-console.log(parseInt(test)); //строка превращается в числовой тип данных
-console.log(parseFloat(test)); //строка превращается в числовой тип данных
+console.log(parseInt(test)); //строка превращается в числовой тип данных, только целые
+console.log(parseFloat(test)); //строка превращается в числовой тип данных, c ltcznbxysvb
 
 
