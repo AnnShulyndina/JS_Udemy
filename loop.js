@@ -23,5 +23,5 @@ for (let i=1; i < 10; i++) {
         // break;
         continue;
     }
-    console.log(i); 
-}
+    console.log(i); //выводятся все цифры кроме 6
+    }

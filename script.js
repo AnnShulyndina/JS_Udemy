@@ -82,10 +82,7 @@ for (let i=0; i<1; i++) {
     //        break;
     //   }    //switch используется только для прямого сравнения,  
     // а так как у нас промежутки мы не можем его применять!! 
-    
-
-
-    
+   
         if(personalMovieDB.count < 10) {
             console.log ("Просмтрено мало фильмов");
         } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) { 
