@@ -28,7 +28,8 @@ console.log(border);
 // for (let key in options) {
 //     if (typeof(options[key]) === 'object'){
 //         for (let i in options [key]){
-//             console.log(`Свойство ${i} имеет значение ${options[key][i]}`); //не понятно с ${options[key]} - как это равно значению ключа?
+//             console.log(`Свойство ${i} имеет значение ${options[key][i]}`); 
+//не понятно с ${options[key]} - как это равно значению ключа?
 //             counter++;
 //         }
 //         } else {
