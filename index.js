@@ -1,6 +1,6 @@
 "use strict";
 
-/*let number = 5;
+let number = 5;
 const leftBorderWidth = 1;
 number = 10;
 console.log(number)
@@ -11,7 +11,7 @@ const obj = {
 obj.a = 10;
 console.log(obj);
 
-let number = 4.6;
+let numberer = 4.6;
 
 console.log (-4/0); // -infinity
 console.log ('string' * 9); // NaN
@@ -77,7 +77,7 @@ console.log(2 * 4 !== "8");
 const isChecked = true,
     isClose = true;
 
-    console.log(isChecked && !isClose);*/
+    console.log(isChecked && !isClose);
 
 
 

@@ -49,6 +49,15 @@ logger();
     return a + b;
  };
 
+ function hello() {
+     console.log('hello world')
+ }
+ hello();
+
+ function hi() {
+     console.log('Say hi');
+ }
+ hi();
 
 
 
