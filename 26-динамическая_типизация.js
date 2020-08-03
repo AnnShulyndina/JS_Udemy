@@ -45,3 +45,5 @@ console.log(typeof(Boolean('4')));
 
 //3)
 console.log(typeof(parseInt("15px", 10)));
+
+console.log(typeof(!!"44444"));
