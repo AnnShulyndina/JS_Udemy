@@ -32,11 +32,11 @@ const deleteElement = (event) => {
 //     alert('Second click'); // в данном варианте выводится оба действия клика
 // });
 
-const link = document.querySelector('a');
-link.addEventListener('click', function (event) { //call back func
-    event.preventDefault();// отменяем стандартное поведение браузера (чтобы он не переходил по ссылке)
-    console.log(event.target);//ссылка просто выводится в консоль
-});
+// const link = document.querySelector('a');
+// link.addEventListener('click', function (event) { //call back func
+//     event.preventDefault();// отменяем стандартное поведение браузера (чтобы он не переходил по ссылке)
+//     console.log(event.target);//ссылка просто выводится в консоль
+// });
 
 
 btns.forEach(btn => { //обработчик событий сразу на несколько элементов, теперь работает каждая кнопка
