@@ -75,7 +75,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function setClock(selector, endtime) {
-        
+
         const timer = document.querySelector(selector),
             days = timer.querySelector('#days'),
             hours = timer.querySelector('#hours'),
@@ -99,7 +99,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         }
     }
-    
+
     setClock('.timer', deadline);
 
     // модальное окно
@@ -107,22 +107,57 @@ window.addEventListener('DOMContentLoaded', () => {
         modal = document.querySelector('.modal'),
         modalCloseBtn = document.querySelector('[data-close]');
 
-    modalTrigger.forEach(btn =>{
-        btn.addEventListener('click', ()=> {
-            modal.classList.add('show'); //при клике должно показаться модальное окно
-            modal.classList.remove('hide');
-            document.body.style.overflow = 'hidden'; //при открытии модального окна сама страница сайта не 
-            //прокручивается благодаря overflow
-        });
-    });
-    
-   
+    function openModal() {
+        modal.classList.add('show'); //при клике должно показаться модальное окно
+        modal.classList.remove('hide');
+        document.body.style.overflow = 'hidden'; //при открытии модального окна сама страница сайта не 
+        //прокручивается благодаря overflow
+    };
 
-    modalCloseBtn.addEventListener('click', ()=> {
-        modal.classList.add('hide'); //при клике должно закрываться модальное окно
+
+    modalTrigger.forEach(btn => {
+        btn.addEventListener('click', openModal);
+    });
+
+
+    function closeModal() {
+        modal.classList.add('hide');
         modal.classList.remove('show');
         document.body.style.overflow = '';
+        clearInterval(modalTimerId);
+    }
+
+    modalCloseBtn.addEventListener('click', () => {
+        modal.classList.add('hide'); //при клике должно закрываться модальное окно
+        modal.classList.remove('show');
+        document.body.style.overflow = '';// при закрытии модального окна чтобы работало все по дефолту
     });
+
+    modalCloseBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.code === "Escape" && modal.classList.contains('show')) { //закрытие модального окна клавишей esc
+            closeModal();
+        }
+    });
+
+    const modalTimerId = setTimeout(openModal, 6000); //м.о. открывается через 6 сек после загрузки страницы
+
+    function showModalByScroll() { //как пользователь долистал страницу открывается модальное окно
+        if(window.pageYOffset + document.documentElement.clientHeight >= document.
+            documentElement.scrollHeight) {
+                openModal();
+                window.removeEventListener('scroll', showModalByScroll); //для того чтобы окно не открывалось еще раз
+                //после повторного пролистывания страницы до конца
+            }
+    }
+    window.addEventListener('scroll', showModalByScroll);
 });
 
 
