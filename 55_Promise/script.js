@@ -2,7 +2,7 @@
 //если много действий должны выполняться одно за другим используется promise
 //
 
-console.log('Запрос данных...');
+ console.log('Запрос данных...');
 const req = new Promise((resolve, reject) => {
     setTimeout(() => {
         console.log('Подготовка данных...');
@@ -20,7 +20,7 @@ req.then((product) => { // then принимает аргумент с функ�
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             product.status = "order";
-            reject();
+            resolve(product);
         }, 2000);
     });
 }).then(data => {
@@ -28,9 +28,30 @@ req.then((product) => { // then принимает аргумент с функ�
     return data;
 }).then(data => {
     console.log(data);
-}).catch(()=> {
+}).catch(()=> { //если что-то пойдет не так сработает блок кода catch и выдаст ошибку
     console.error('Произошла ошибка');
+}).finally(()=> {
+console.log('Finally');
 });
+//действие происходит при любом исходе finaly//
+
+const test = time => {
+    return new Promise(resolve => {
+        setTimeout(()=> resolve(), time);
+    });
+};
+// test(1000).then(()=> console.log('1000 ms'));
+// test(2000).then(()=> console.log('2000 ms'));
+
+// Promise.all([test(1000), test(2000)]).then(()=> {
+// console.log('All');
+// });
+Promise.race([test(1000), test(2000)]).then(()=> {
+console.log('All');
+});
+
+
+
 
 
 
