@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -208,7 +208,7 @@ window.addEventListener('DOMContentLoaded', () => {
         'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
         9,
         '.menu .container',
-        
+
     ).render();
 
     new MenuCard(
@@ -218,8 +218,8 @@ window.addEventListener('DOMContentLoaded', () => {
         'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
         14,
         '.menu .container',
-        
-        
+
+
     ).render();
 
     new MenuCard(
@@ -228,8 +228,57 @@ window.addEventListener('DOMContentLoaded', () => {
         'Меню "Постное"',
         'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков. ',
         21,
-        '.menu .container',
-        
-        
+        '.menu .container'
+
+
     ).render();
+
+    // //forms //для сброса cash памяти на сайте shift + F5
+    const forms = document.querySelectorAll('form'); //получение всех форм на странице
+
+    const message = {
+        loading: "Загрузка",
+        succsess: "Спасибо! Скоро мы свяжемся с вами",
+        failure: "Что-то пошло не так..."
+    };
+
+    forms.forEach(item => { // на каждую форму надо привязать postData
+        postData(item);
+    });
+
+    function postData(form) {
+        //ответ на ваше имя ваш номер телефона
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();//чтобы отменить стандартное поведение браузера и он не перезагружался каждый раз после воода данных
+
+            let statusMessage = document.createElement('div'); //подгружаем объекты loading, succsess, failure
+            statusMessage.classList.add('status');
+            statusMessage.textContent = message.loading;
+            form.append(statusMessage);//добавляем к форме сообщение
+
+            const request = new XMLHttpRequest(); // даёт возможность делать HTTP-запросы к серверу без перезагрузки страницы.
+            request.open('POST', 'server.php');//метод open чтобы настроить запрос, метод POST 
+
+            //!!!
+            // request.setRequestHeader('Content-type', 'multipart/form-data');// !!!!   XMLHttpRequest(); + FormData(form); - заголовок устанавливать не нужно
+            const formData = new FormData(form);
+
+            request.send(formData);
+            request.addEventListener('load', () => { //отслеживаем load конечную загрузку нашего запроса
+                if (request.status === 200) { //почему 200?
+                    console.log(request.response);
+                    statusMessage.textContent = message.succsess; //т.е. statusMessage succsess помещаем в load чтобы оно срабатывало после загрузки 
+
+                    form.reset();
+                    setTimeout(() => {
+                        statusMessage.remove();
+                    }, 2000); //удаление через 2 сек "Спасибо! Скоро мы свяжемся с вами" и очищение ячеек
+                    
+                } else {
+                    statusMessage.textContent = message.failure;
+                }
+            });
+        });
+    }
 });
+
