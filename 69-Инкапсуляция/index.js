@@ -14,7 +14,7 @@ class User {
     
     setAge(age) {
         if (typeof age === "number" && age > 0 && age < 110) {
-            userAge = age;
+            this.userAge = age;
         } else {
             console.log('Недопустимое значение');
         }
