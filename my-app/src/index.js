@@ -29,7 +29,8 @@ class WhoAmI extends Component {
         nextYear = () => {
                 this.setState(state => ({
                         years: ++state.years
-                    }));
+                    })
+                );
         }
     
     
