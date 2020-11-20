@@ -18,7 +18,7 @@ export default class PostListItem extends Component {
         }))
     }
     
-     onLike() {
+    onLike() {
         this.setState(({like}) => ({
             like: !like
         }))
@@ -34,14 +34,14 @@ export default class PostListItem extends Component {
         if (important) {
             classNames += ' important';
         }
-         if (like) {
+        if (like) {
             classNames += ' like';
         }
         
         return (
             <li className={classNames}>
             <span className='app-list-item-label'
-            onClick={this.onLike}>
+                  onClick={this.onLike}>
                 {label}
             </span>
                 <div className="d-flex justify-content-center align-items-center">
@@ -65,4 +65,3 @@ export default class PostListItem extends Component {
         )
     }
 }
-
