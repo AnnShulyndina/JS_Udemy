@@ -35,6 +35,7 @@ const App = () => {
             <PostList posts={data}/>
             
             <PostAddForm/>
+      
         
         </StyledAppBlock>
     )

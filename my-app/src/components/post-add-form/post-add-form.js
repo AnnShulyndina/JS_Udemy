@@ -1,9 +1,22 @@
 import React from 'react';
 import './post-add-form.css';
+import styled from 'styled-components'
+
+const BottomPanel = styled.div `
+display: flex;
+margin-top: 20px;
+`
+
+const NewPostLabel = styled(BottomPanel)`
+width: auto;
+flex-grow: 1;
+margin-right: 3px;
+`
 
 const PostAddForm = () => {
     return (
-        <form className="bottom-panel d-flex">
+      
+        <NewPostLabel>
             <input
                 type='text'
                 placeholder="О чем вы думаете сейчас?"
@@ -13,7 +26,11 @@ const PostAddForm = () => {
                         className="btn btn-outline-secondary">
                     Добавить
                 </button>
-        </form>
+            
+     
+        </NewPostLabel>
+
+       
 )
 }
 
