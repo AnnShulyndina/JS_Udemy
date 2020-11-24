@@ -60,31 +60,32 @@ export default class App extends Component {
         })
     }
     
-    //попробовать переписать
-    onToggleImportant(id) {
+    sliceArr (id, buttonType) {
         this.setState(({data}) => {
-            const index = data.findIndex(elem => elem.id === id)
-            const old = data[index];
-            const newItem = {...old, important: !old.important};
-            const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)];
             
+            const index = data.findIndex(elem => elem.id === id)
+            const oldItem = data[index];
+            let newItem = {...oldItem};
+            
+            if (buttonType==="important") {
+                newItem.important = !newItem.important;
+            } else if (buttonType==="like") {
+                newItem.like = !newItem.like;
+            }
+    
+            const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)];
             return {
                 data: newArr
             }
         })
     }
     
+    onToggleImportant(id) {
+        this.sliceArr(id, "important")
+    }
+    
     onToggleLike(id) {
-        this.setState(({data}) => {
-            const index = data.findIndex(elem => elem.id === id)
-            const old = data[index];
-            const newItem = {...old, like: !old.like};
-            const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)];
-            
-            return {
-                data: newArr
-            }
-        })
+        this.sliceArr(id, "like")
     }
     
     searchPost(items, term) {
