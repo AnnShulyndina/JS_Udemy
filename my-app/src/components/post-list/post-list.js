@@ -10,7 +10,7 @@ const PostList = ({posts, onDelete, onToggleImportant, onToggleLike}) => {
     const elements = posts.map((item) => {
         const {id, ...itemProps} = item
         return (
-            <li key={id} className='list-group-item'>
+            <div key={id} className='list-group-item'>
                 {/*            <PostListItem
                 label={item.label}
                 important={item.important}/>*/}
@@ -19,7 +19,7 @@ const PostList = ({posts, onDelete, onToggleImportant, onToggleLike}) => {
                     onDelete={() => onDelete(id)}
                     onToggleImportant={() => onToggleImportant(id)}
                     onToggleLike={() => onToggleLike(id)}/>
-            </li>
+            </div>
         )
     })
     
