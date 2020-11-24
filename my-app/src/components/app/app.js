@@ -59,14 +59,15 @@ export default class App extends Component {
             }
         })
     }
-  //попробовать переписать
+    
+    //попробовать переписать
     onToggleImportant(id) {
-        this.setState(({data})=> {
+        this.setState(({data}) => {
             const index = data.findIndex(elem => elem.id === id)
             const old = data[index];
             const newItem = {...old, important: !old.important};
-            const newArr = [...data.slice(0, index), newItem,  ...data.slice(index + 1)];
-        
+            const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)];
+            
             return {
                 data: newArr
             }
@@ -74,7 +75,7 @@ export default class App extends Component {
     }
     
     onToggleLike(id) {
-        this.setState(({data})=> {
+        this.setState(({data}) => {
             const index = data.findIndex(elem => elem.id === id)
             const old = data[index];
             const newItem = {...old, like: !old.like};
@@ -87,31 +88,35 @@ export default class App extends Component {
     }
     
     searchPost(items, term) {
-        if(term.length === 0) {
+        if (term.length === 0) {
             return items
         }
-        items.filter((item)=>{
-            return item.label.indexOf(term)>-1
+        items.filter((item) => {
+            return item.label.indexOf(term) > -1
         })
     }
     
-    filterPost(items, filter){
+    filterPost(items, filter) {
         if (filter === 'like') {
-            return items.filter(item=>item.like)
-        } else {return items}
+            return items.filter(item => item.like)
+        } else {
+            return items
+        }
     }
     
-    onUpdateSearch(term){
+    onUpdateSearch(term) {
         this.setState({term})
     }
     
-    onFilterSelect(filter){
+    onFilterSelect(filter) {
         this.setState({filter})
     }
+    
     render() {
         const {data, term, filter} = this.state;
         
         const liked = data.filter(item => item.like).length;
+        
         const allPosts = data.length;
         
         const visiblePosts = this.filterPost(this.searchPost(data, term), filter);
@@ -127,15 +132,15 @@ export default class App extends Component {
             
             <StyledAppBlock>
                 <AppHeader
-                liked={liked}
-                allPosts={allPosts}/>
+                    liked={liked}
+                    allPosts={allPosts}/>
                 <div className="search-panel d-flex">
                     <SearchPanel
                         onUpdateSearch={this.onUpdateSearch}
                     />
                     <PostStatusFilter
-                    filter={filter}
-                    onFilterSelect={this.onFilterSelect}/>
+                        filter={filter}
+                        onFilterSelect={this.onFilterSelect}/>
                 </div>
                 <PostList
                     posts={visiblePosts}

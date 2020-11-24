@@ -4,10 +4,10 @@ import {ListGroup} from 'reactstrap';
 
 import './post-list.css';
 
-
 const PostList = ({posts, onDelete, onToggleImportant, onToggleLike}) => {
     
     const elements = posts.map((item) => {
+        
         const {id, ...itemProps} = item
         return (
             <div key={id} className='list-group-item'>
