@@ -18,13 +18,15 @@ export default class App extends Component {
                 {label: 'That is so good', important: false, id: 2, lake: false},
                 {label: 'I need a break...', important: false, id: 3, lake: false},
             ],
-            term: ''
+            term: '',
+            filter: 'all'
         };
         this.deleteItem = this.deleteItem.bind(this)
         this.addItem = this.addItem.bind(this)
         this.onToggleImportant = this.onToggleImportant.bind(this)
         this.onToggleLike = this.onToggleLike.bind(this)
         this.onUpdateSearch = this.onUpdateSearch.bind(this)
+        this.onFilterSelect = this.onFilterSelect.bind(this)
         
         this.maxId = 4;
     }
@@ -92,16 +94,27 @@ export default class App extends Component {
             return item.label.indexOf(term)>-1
         })
     }
+    
+    filterPost(items, filter){
+        if (filter === 'like') {
+            return items.filter(item=>item.like)
+        } else {return items}
+    }
+    
     onUpdateSearch(term){
         this.setState({term})
     }
+    
+    onFilterSelect(filter){
+        this.setState({filter})
+    }
     render() {
-        const {data, term} = this.state;
+        const {data, term, filter} = this.state;
         
         const liked = data.filter(item => item.like).length;
         const allPosts = data.length;
         
-        const visiblePosts = this.searchPost(data, term);
+        const visiblePosts = this.filterPost(this.searchPost(data, term), filter);
         
         const AppBlock = styled.div`
     margin: 0 auto;
@@ -120,7 +133,9 @@ export default class App extends Component {
                     <SearchPanel
                         onUpdateSearch={this.onUpdateSearch}
                     />
-                    <PostStatusFilter/>
+                    <PostStatusFilter
+                    filter={filter}
+                    onFilterSelect={this.onFilterSelect}/>
                 </div>
                 <PostList
                     posts={visiblePosts}
