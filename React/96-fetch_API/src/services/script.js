@@ -1,4 +1,3 @@
-
 export default class GotService {
     
     constructor() {
@@ -15,35 +14,62 @@ export default class GotService {
         return await res.json();
     }
     
-    getAllCharacters() {
-        return this.getResource('/characters?page=5&pageSize=10')
-    }
-    getCharacter(id) {
-    return this.getResource('/characters/${id}')
-    
+    async getAllCharacters() {
+        const res = await this.getResource('/characters?page=5&pageSize=10')
+        return res.map(this._transformCharacter())
     }
     
-    getAllBooks(){
-        return this.getResource('/books')
+    async getCharacter(id) {
+        const character = await this.getResource(`/characters/${id}`)
+        return this._transformCharacter(character);
     }
-    getBook(id){
-        return this.getResource('/books/${id}')
-    }
-    getAllHouses(){
+    
+    getAllHouses() {
         return this.getResource('/houses')
     }
-    getHouse(id){
-        return this.getResource('/houses/${id}')
+    
+    getHouse(id) {
+        return this.getResource(`/houses/${id}`)
     }
+    
+    _transformCharacter(char) {
+        return {
+            name: char.name,
+            gender: char.gender,
+            born: char.born,
+            died: char.died,
+            culture: char.culture
+        }
+    }
+    
+/*    _transformBook(book) {
+        return {
+            name: book.name,
+            numberOfPages: book.numberOfPages,
+            publiser: book.publiser,
+            realised: book.realised,
+        }
+    }
+    
+    _transformHouse(house) {
+        return {
+            name: house.name,
+            region: house.region,
+            words: house.words,
+            titles: house.titles,
+            overlord: house.overlord,
+            ancestralWeapons: house.ancestralWeapons
+        }
+    }*/
 }
-
 
 const got = new GotService();
 got.getAllCharacters()
-    .then(res=>{
-        res.forEach(item=>console.log(item.name))
+    .then(res => {
+        res.forEach(item => console.log(item.name))
     });
 
 got.getCharacter(130)
-    .then(res=>console.log(res))
+    .then(res => console.log(res))
+
 
