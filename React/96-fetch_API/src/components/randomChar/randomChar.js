@@ -1,67 +1,86 @@
 import React, {Component} from 'react';
 import './randomChar.css';
 import gotService from '../../services/script'
+import Spinner from '../spinner';
+import ErrorMessage from "../erroMessage";
 
 export default class RandomChar extends Component {
-    constructor(){
+    constructor() {
         super();
-        this.updateChar();
-   
+        this.updateChar()
+        
     }
     
-    gotService = new gotService();
-    
+    gotService = new gotService()
     state = {
-        name: null,
-        gender: null,
-        born: null,
-        died: null,
-        culture:null
+        char: {},
+        loading: true
     }
-
+    
+    onError = (err) => {
+        this.setState({
+            error: true,
+            loading: false
+        })
+    }
     // onCharLoaded = (char) => {
     //     this.setState({char})
     // }
     
     updateChar() {
-        const id = Math.floor(Math.random()*140+25);
+        const id = Math.floor(Math.random() * 140 + 25);
         this.gotService.getCharacter(id)
-            .then((char)=> {
-                this.setState({
-                    name: char.name,
-                    gender: char.gender,
-                    born: char.born,
-                    died: char.died,
-                    culture: char.culture
-                })
+            .then((char) => {
+                this.setState({char})
             })
     }
-
+    
     render() {
-        const{name, gender, born, died, culture} = this.state
-
+        const {char, loading, error} = this.state;
+        
+        const errorMessage = error ? <ErrorMessage/> : null
+        const spinner  = loading ? <Spinner/> : null;
+        const content = !(loading || error) ? <View char={char}/> : null;
+        
+        
+        if (loading) {
+            return <Spinner/>
+        }
+        
         return (
             <div className="random-block rounded">
-                <h4>Random Character: {name}</h4>
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item d-flex justify-content-between">
-                        <span className="term">Gender </span>
-                        <span>{gender}</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between">
-                        <span className="term">Born </span>
-                        <span>{born}</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between">
-                        <span className="term">Died </span>
-                        <span>{died}</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between">
-                        <span className="term">Culture </span>
-                        <span>{culture}</span>
-                    </li>
-                </ul>
+                {content}
+                {spinner}
+                {errorMessage}
             </div>
-        );
-    }
+        )
+    };
 }
+
+const View = ({char}) => {
+    const {name, gender, born, died, culture} = char
+    return (
+        <>
+            <h4>Random Character: {name}</h4>
+            <ul className="list-group list-group-flush">
+                <li className="list-group-item d-flex justify-content-between">
+                    <span className="term">Gender </span>
+                    <span>{gender}</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between">
+                    <span className="term">Born </span>
+                    <span>{born}</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between">
+                    <span className="term">Died </span>
+                    <span>{died}</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between">
+                    <span className="term">Culture </span>
+                    <span>{culture}</span>
+                </li>
+            </ul>
+        </>
+    )
+}
+
