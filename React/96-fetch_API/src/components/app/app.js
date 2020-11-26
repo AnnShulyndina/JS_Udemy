@@ -13,37 +13,59 @@ import {Col, Row, Container, Button} from 'reactstrap';
 // const Button = styled.div`
 // display: flex`;
 
-const App = () => {
 
-    return (
-        <>
-            <Container>
-                <Header/>
-            </Container>
-            
-            <Container>
-                <Row>
-                    <Col lg={{size: 5, offset: 0}}>
-                        <RandomChar/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md='6'>
-                        <ItemList/>
-                    </Col>
-                    <Col md='6'>
-                        <CharDetails/>
-                    </Col>
-                </Row>
-            </Container>
-            
-            <Button className="hide-random-block"
-                    
-                    outline color="secondary">secondary
-            
-            </Button>
-        </>
-    );
+export default class App extends React.Component {
+    
+    state = {
+        showRandomChar: true,
+        
+    }
+    
+    onHideRandomChar = () => {
+                this.setState((state)=> {
+                    return {
+                        showRandomChar: !this.state.showRandomChar
+                    }
+                });
+    }
+    
+    render() {
+        
+         const {showRandomChar} = this.state
+         const char = showRandomChar ?  <RandomChar/> : null
+        
+        
+        
+        return (
+            <>
+                <Container>
+                    <Header/>
+                </Container>
+                
+                <Container>
+                    <Row>
+                        <Col lg={{size: 5, offset: 0}}>
+                            {char}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md='6'>
+                            <ItemList/>
+                        </Col>
+                        <Col md='6'>
+                            <CharDetails/>
+                        </Col>
+                    </Row>
+                </Container>
+                
+                <Button className="hide-random-char-component"
+                        outline color="secondary"
+                        onClick={this.onHideRandomChar}>
+              
+                    secondary
+                </Button>
+            </>
+        );
+    }
 };
 
-export default App;
