@@ -1,5 +1,7 @@
+import Spinner from "../components/spinner";
+
 export default class GotService {
-    
+    // коснтруктор для инициализации apibase
     constructor() {
         this._apiBase = 'https://www.anapioficeandfire.com/api';
     }
@@ -7,6 +9,7 @@ export default class GotService {
     async getResource(url) {
         const res = await fetch(`${this._apiBase}${url}`);
         
+        // если ответ с ошибкой, то вывыдим в консоль new Error
         if (!res.ok) {
             throw new Error(`Could not fetch ${url}` +
                 `, received ${res.status}`);
@@ -16,12 +19,15 @@ export default class GotService {
     
     async getAllCharacters() {
         const res = await this.getResource('/characters?page=5&pageSize=10')
-        return res.map(this._transformCharacter())
+        console.log("all", res)
+        return res.map((el) => (
+            this._transformCharacter(el)
+        ))
     }
     
     async getCharacter(id) {
-        const character = await this.getResource(`/characters/${id}`)
-        return this._transformCharacter(character);
+        const char = await this.getResource(`/characters/${id}`)
+        return this._transformCharacter(char);
     }
     
     getAllHouses() {
@@ -33,34 +39,38 @@ export default class GotService {
     }
     
     _transformCharacter(char) {
-        return {
-            name: char.name,
-            gender: char.gender,
-            born: char.born,
-            died: char.died,
-            culture: char.culture
+        console.log("char", char)
+        if (char) {
+            return {
+                gender: char.gender,
+                name: char.name,
+                born: char.born,
+                died: char.died,
+                culture: char.culture
+            }
         }
+        return {}
     }
     
-/*    _transformBook(book) {
-        return {
-            name: book.name,
-            numberOfPages: book.numberOfPages,
-            publiser: book.publiser,
-            realised: book.realised,
+    /*    _transformBook(book) {
+            return {
+                name: book.name,
+                numberOfPages: book.numberOfPages,
+                publiser: book.publiser,
+                realised: book.realised,
+            }
         }
-    }
-    
-    _transformHouse(house) {
-        return {
-            name: house.name,
-            region: house.region,
-            words: house.words,
-            titles: house.titles,
-            overlord: house.overlord,
-            ancestralWeapons: house.ancestralWeapons
-        }
-    }*/
+        
+        _transformHouse(house) {
+            return {
+                name: house.name,
+                region: house.region,
+                words: house.words,
+                titles: house.titles,
+                overlord: house.overlord,
+                ancestralWeapons: house.ancestralWeapons
+            }
+        }*/
 }
 
 const got = new GotService();
@@ -69,7 +79,7 @@ got.getAllCharacters()
         res.forEach(item => console.log(item.name))
     });
 
-got.getCharacter(130)
+got.getCharacter(155)
     .then(res => console.log(res))
 
 

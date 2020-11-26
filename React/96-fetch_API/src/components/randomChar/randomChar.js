@@ -5,13 +5,14 @@ import Spinner from '../spinner';
 import ErrorMessage from "../erroMessage";
 
 export default class RandomChar extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.updateChar()
-        
+            this.onError()
     }
     
     gotService = new gotService()
+    
     state = {
         char: {},
         loading: true
@@ -23,16 +24,15 @@ export default class RandomChar extends Component {
             loading: false
         })
     }
-    // onCharLoaded = (char) => {
-    //     this.setState({char})
-    // }
+    
+     onCharLoaded = (char) => {
+         this.setState({char: char, loading: false})
+     }
     
     updateChar() {
         const id = Math.floor(Math.random() * 140 + 25);
         this.gotService.getCharacter(id)
-            .then((char) => {
-                this.setState({char})
-            })
+            .then(this.onCharLoaded)
     }
     
     render() {
