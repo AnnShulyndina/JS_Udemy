@@ -39,7 +39,7 @@ export default class GotService {
     }
     
     _transformCharacter(char) {
-        console.log("char", char)
+        // console.log("char", char)
         if (char) {
             return {
                 gender: char.gender,
