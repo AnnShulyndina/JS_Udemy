@@ -1,13 +1,13 @@
 import React from 'react';
 
-import './app.css'
+import './app.css';
 import Header from '../header';
 import RandomChar from '../randomChar';
 import ItemList from '../itemList';
 import CharDetails from '../charDetails';
 
 
-import {Col, Row, Container, Button} from 'reactstrap';
+import {Col, Row, Container} from 'reactstrap';
 // import styled from 'styled-components'
 //
 // const Button = styled.div`
@@ -22,19 +22,17 @@ export default class App extends React.Component {
     }
     
     onHideRandomChar = () => {
-                this.setState((state)=> {
-                    return {
-                        showRandomChar: !this.state.showRandomChar
-                    }
-                });
+        this.setState(() => {
+            return {
+                showRandomChar: !this.state.showRandomChar
+            }
+        });
     }
     
     render() {
         
-         const {showRandomChar} = this.state
-         const char = showRandomChar ?  <RandomChar/> : null
-        
-        
+        const {showRandomChar} = this.state
+        const char = showRandomChar ? <RandomChar/> : null
         
         return (
             <>
@@ -46,8 +44,13 @@ export default class App extends React.Component {
                     <Row>
                         <Col lg={{size: 5, offset: 0}}>
                             {char}
+                            <button className="btn-hide-randomChar"
+                                    onClick={this.onHideRandomChar}>
+                                Toggle random character
+                            </button>
                         </Col>
                     </Row>
+                    
                     <Row>
                         <Col md='6'>
                             <ItemList/>
@@ -57,13 +60,6 @@ export default class App extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-                
-                <Button className="hide-random-char-component"
-                        outline color="secondary"
-                        onClick={this.onHideRandomChar}>
-              
-                    secondary
-                </Button>
             </>
         );
     }

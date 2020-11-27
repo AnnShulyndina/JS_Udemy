@@ -1,4 +1,14 @@
-Button {
-    margin: 0 0 40px;
-    padding: 25px 25px 15px;
+.btn-hide-randomChar {
+    padding: 12px;
+    background-color: #1e2edb;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    margin-bottom: 40px;
+    outline: none;
+    box-shadow: 0px 0px 30px rgba(256,256,256,.1);
+
+}
+.btn-hide-randomChar:hover {
+    outline: none;
 }
