@@ -18,6 +18,7 @@ export default class App extends React.Component {
     
     state = {
         showRandomChar: true,
+        selectedChar: 130
     }
     
     onHideRandomChar = () => {
@@ -26,6 +27,12 @@ export default class App extends React.Component {
                 showRandomChar: !this.state.showRandomChar
             }
         });
+    }
+    
+    onCharSelected = (id) => {
+        this.setState({
+            selectedChar: id
+        })
     }
     
     render() {
@@ -52,10 +59,10 @@ export default class App extends React.Component {
                     
                     <Row>
                         <Col md='6'>
-                            <ItemList/>
+                            <ItemList onCharSelected={this.onCharSelected}/>
                         </Col>
                         <Col md='6'>
-                            <CharDetails/>
+                            <CharDetails charId={this.state.selectedChar}/>
                         </Col>
                     </Row>
                 </Container>
