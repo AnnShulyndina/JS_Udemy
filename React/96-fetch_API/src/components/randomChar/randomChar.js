@@ -50,7 +50,6 @@ export default class RandomChar extends Component {
         const spinner = loading ? <Spinner/> : null;
         const content = !(loading || error) ? <View char={char}/> : null;
         
-        
         if (loading) {
             return <Spinner/>
         }
