@@ -37,8 +37,6 @@ export default class App extends React.Component {
         });
     }
     
-   
-    
     render() {
         
         const {showRandomChar} = this.state

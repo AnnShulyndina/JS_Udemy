@@ -60,6 +60,7 @@ export default class RandomChar extends Component {
                 {spinner}
                 {errorMessage}
             </div>
+           
         )
     };
 }

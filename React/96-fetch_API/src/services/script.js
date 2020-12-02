@@ -16,7 +16,7 @@ export default class GotService {
         }
         return await res.json();
     }
-    
+    к
     async getAllCharacters() {
         const res = await this.getResource('/characters?page=5&pageSize=10')
         console.log("all", res)
