@@ -23,7 +23,7 @@ export default class ItemList extends Component {
         return arr.map((item) => {
             const {id} = item;
             
-            const label = this.props.renderItem(item);
+            const label = this.props.renderItems(item);
             
             return (
                 <li
@@ -52,4 +52,7 @@ export default class ItemList extends Component {
             </ul>
         );
     }
+}
+ItemList.defaultProps = {
+    onItemSelected:() = {}
 }

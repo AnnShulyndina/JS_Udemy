@@ -13,12 +13,16 @@ export default class RandomChar extends Component {
         error: false
     }
     
+    // static defaultProps = {
+    //     interval: 15000
+    // }
+    
     componentDidMount() {
         this.updateChar();
-        this.timerId = setInterval(this.updateChar, 15000);
+        this.timerId = setInterval(this.updateChar, this.props.interval);
     }
     
-    componentWillUnmount(){
+    componentWillUnmount() {
         clearInterval(this.timerId);
     }
     
@@ -37,14 +41,14 @@ export default class RandomChar extends Component {
     }
     
     updateChar = () => {
-        const id = Math.floor(Math.random()*140 + 25); //25-140
+        const id = Math.floor(Math.random() * 140 + 25); //25-140
         this.gotService.getCharacter(id)
             .then(this.onCharLoaded)
             .catch(this.onError);
     }
     
     render() {
-        const { char, loading, error } = this.state;
+        const {char, loading, error} = this.state;
         
         const errorMessage = error ? <ErrorMessage/> : null;
         const spinner = loading ? <Spinner/> : null;
@@ -57,6 +61,21 @@ export default class RandomChar extends Component {
                 {content}
             </div>
         );
+    }
+}
+//свойства по умолчанию
+RandomChar.defaultProps = {
+    interval: 15000
+}
+
+RandomChar.propTypes = {
+    interval: (props, propName, componentName) => {
+        const value = props[propName];
+        
+        if (typeof value === 'number' && !isNAN(value)) {
+            return null
+        }
+        return new TypeError(`${componentName}:${propName} must be a number`)
     }
 }
 const View = ({char}) => {
