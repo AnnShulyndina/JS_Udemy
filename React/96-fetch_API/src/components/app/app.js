@@ -5,13 +5,12 @@ import Header from '../header';
 import RandomChar from '../randomChar';
 import ErrorMessage from "../erroMessage";
 import CharacterPage from "../characterPage";
-
+import ItemList from "../itemList";
+import CharDetails from "../charDetails";
+import gotService from '../../services/script'
 
 import {Col, Row, Container} from 'reactstrap';
-// import styled from 'styled-components'
-//
-// const Button = styled.div`
-// display: flex`;
+
 
 
 export default class App extends React.Component {
@@ -37,7 +36,6 @@ export default class App extends React.Component {
         });
     }
     
-   
     
     render() {
         
@@ -65,7 +63,33 @@ export default class App extends React.Component {
                         </Col>
                     </Row>
                     
-                  <CharacterPage/>
+                    <CharacterPage/>
+                    
+                    <Row>
+                        <Col md='6'>
+                            <ItemList onItemSelected={this.onItemSelected}
+                                      getData={this.gotService.getAllBooks}
+                                      renderItem={(item) => item.name}/>
+                        </Col>
+                        <Col>
+                            <CharDetails charId={this.state.selectedChar}/>
+                        </Col>
+                    </Row>
+                    
+                    
+                    
+                    <Row>
+                        <Col md='6'>
+                            <ItemList onItemSelected={this.onItemSelected}
+                                      getData={this.gotService.getAllHouses}
+                                      renderItem={(item) => item.name}/>
+                        </Col>
+                        <Col>
+                            <CharDetails charId = {this.state.selectedChar}/>
+                        </Col>
+                    
+                    </Row>
+                
                 </Container>
             </>
         );
