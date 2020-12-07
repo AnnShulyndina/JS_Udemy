@@ -3,6 +3,7 @@ import './randomChar.css';
 import gotService from '../../services/gotService';
 import Spinner from '../spinner';
 import ErrorMessage from '../errorMessage';
+import PropTypes from 'prop-types';
 
 export default class RandomChar extends Component {
     
@@ -69,15 +70,9 @@ RandomChar.defaultProps = {
 }
 
 RandomChar.propTypes = {
-    interval: (props, propName, componentName) => {
-        const value = props[propName];
-        
-        if (typeof value === 'number' && !isNAN(value)) {
-            return null
-        }
-        return new TypeError(`${componentName}:${propName} must be a number`)
-    }
+    interval: PropTypes.number
 }
+
 const View = ({char}) => {
     const {name, gender, born, died, culture} = char;
     return (

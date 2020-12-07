@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './itemList.css';
 import Spinner from '../spinner';
+import PropTypes from 'prop-types';
 
 export default class ItemList extends Component {
     
@@ -8,11 +9,18 @@ export default class ItemList extends Component {
         itemList: null
     }
     
+    static defaultProps = {
+        onItemSelected: () = {}
+    }
+    static propTypes = {
+        onItemSelected: PropTypes.func
+    }
+    
     componentDidMount() {
         const {getData} = this.props;
         
         getData()
-            .then( (itemList) => {
+            .then((itemList) => {
                 this.setState({
                     itemList
                 })
@@ -29,7 +37,7 @@ export default class ItemList extends Component {
                 <li
                     key={id}
                     className="list-group-item"
-                    onClick={ () => this.props.onItemSelected(id)}>
+                    onClick={() => this.props.onItemSelected(id)}>
                     {label}
                 </li>
             )
@@ -52,7 +60,4 @@ export default class ItemList extends Component {
             </ul>
         );
     }
-}
-ItemList.defaultProps = {
-    onItemSelected:() = {}
 }
