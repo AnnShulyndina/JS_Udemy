@@ -9,7 +9,6 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 import './app.css';
 
-
 export default class App extends Component {
     gotService = new gotService();
     
